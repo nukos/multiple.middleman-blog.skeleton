@@ -1,0 +1,58 @@
+---
+pageable: true
+per_page: 3
+---
+
+<h1>Blog</h1>
+
+<% page_articles(blog_controller.name).each_with_index do |article, i| %>
+<div>
+  <h2><%= link_to article.title, article %></h2>
+  <p><%= strip_tags article.summary(100) %></p>
+  <p><time date="<%= article.date.strftime('%Y-%m-%d') %>"><%= article.date.strftime('%Y-%m-%d') %></time></p>
+</div>
+<% end %>
+
+<ul class="page-nav-list">
+  <% if paginate && num_pages > 1 %>
+    <% if prev_page %>
+      <li>
+      <% link_to prev_page do %>
+      Prev
+      <% end %>
+      </li>
+    <% end %>
+  <% end %>
+
+  <% if paginate %>
+    <% if next_page %>
+      <li>
+      <% link_to next_page do %>
+      Next
+      <% end %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<h2>Tags</h2>
+<ul>
+<% blog(blog_controller.name).tags.each do |tag, articles| %>
+  <li class="list-item">
+    <% link_to tag_path(tag, blog_controller.name) do %>
+      <%= tag %> (<%= articles.size %>)
+    <% end %>
+  </li>
+<% end %>
+</ul>
+
+<h2>Archives</h2>
+<ul>
+<% blog(blog_controller.name).articles.group_by {|a| a.date.year }.each do |year, articles| %>
+  <li class="list-item">
+    <% link_to blog_year_path(year, blog_controller.name) do %>
+      <%= year %> (<%= articles.size %>)
+    <% end %>
+  </li>
+<% end %> 
+</ul> 

@@ -1,0 +1,33 @@
+---
+title: Blogs
+---
+
+<h1>Blog</h1>
+
+<h2>Cats</h2>
+<ol>
+  <% blog('cats').articles[0...10].each do |article| %>
+    <li>
+      <% link_to article do %>
+        <%= article.title %>
+        <span><%= article.date.strftime('%b %e') %></span>
+      <% end %>
+    </li>
+  <% end %>
+  <li><%= link_to 'More', '/cats/' %></li>
+  <li><%= link_to 'RSS', '/cats/feed.xml' %></li>
+</ol>
+
+<h2>Dogs</h2>
+<ol>
+  <% blog('dogs').articles[0...10].each do |article| %>
+    <li>
+      <% link_to article do %>
+        <%= article.title %>
+        <span><%= article.date.strftime('%b %e') %></span>
+      <% end %>
+    </li>
+  <% end %>
+  <li><%= link_to 'More', '/dogs/' %></li>
+  <li><%= link_to 'RSS', '/dogs/feed.xml' %></li>
+</ol>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title><%= site_title %></title>
+<meta charset="utf-8">
+<meta name="keywords" content="<%= site_keywords %>">
+<meta name="description" content="<%= site_description %>">
+<meta name="author" content="<%= site_author %>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<%= stylesheet_link_tag 'style' %>
+<%= javascript_include_tag 'script' %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
